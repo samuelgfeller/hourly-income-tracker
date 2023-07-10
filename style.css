@@ -1,0 +1,45 @@
+@font-face {
+    font-family: Nunito;
+    src: url(fonts/Nunito-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: Nunito;
+    src: url(fonts/Nunito-Bold.ttf);
+    font-weight: bold;
+}
+
+* {
+    font-family: Nunito, SansSerif, serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#money-tracker-div {
+    display: none;
+}
+
+#new-earnings{
+    color: #07c707;
+    font-weight: bold;
+    float: right;
+}
+
+.fade-out {
+  animation: fade-out-animation 1s forwards;
+  animation-delay: 10s;
+}
+
+@keyframes fade-out-animation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
