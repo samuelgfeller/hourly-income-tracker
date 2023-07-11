@@ -2,6 +2,8 @@ let totalSeconds = 0;
 let totalCash = 0;
 let wageAmountPerSecond;
 let timerInterval;
+// Seconds elapsed since window was last active
+let elapsedSeconds;
 
 document.querySelector('#submit-btn').addEventListener('click', () => {
     const wageAmount = document.querySelector('#number-input').value;
@@ -18,13 +20,13 @@ document.querySelector('#submit-btn').addEventListener('click', () => {
 
 function startTimer() {
     // Set initial values
-    // document.querySelector('#spent-time').innerText = "00:00:00";
-    // document.querySelector('#total-cash-made').innerText = "00:00 CHF";
     updateEarningSpan();
     timerInterval = setInterval(() => {
         updateEarningSpan();
+        updateNewEarningSpan();
         // Timer
         ++totalSeconds;
+        ++elapsedSeconds;
         updateTimerSpan();
     }, 1000);
 }
@@ -32,8 +34,13 @@ function startTimer() {
 function updateEarningSpan() {
     // Cash made calculation
     totalCash = totalSeconds * wageAmountPerSecond;
-    document.querySelector('#total-cash-made').innerText = totalCash.toFixed(2) + " CHF"
+    document.querySelector('#total-cash-made').innerText = totalCash.toFixed(2) + " CHF";
 }
+function updateNewEarningSpan() {
+    const newEarnings = (elapsedSeconds * wageAmountPerSecond).toFixed(2);
+    newEarningsSpan.innerText = "+ " + newEarnings + " CHF";
+}
+
 
 function updateTimerSpan() {
     let hours = Math.floor(totalSeconds / 3600);
@@ -56,14 +63,15 @@ function handleVisibilityChange() {
     if (document.visibilityState === 'hidden') {
         // Tab is not visible, so store the current timestamp
         hiddenTimestamp = Date.now();
-        newEarningsSpan.classList.remove('fade-out');
+        // Hide new earnings
+        newEarningsSpan.classList.remove('fade-in');
         clearInterval(timerInterval);
     } else if (document.visibilityState === 'visible') {
         if (hiddenTimestamp) {
             // Tab is visible again after being hidden
             const now = Date.now();
             const elapsedMilliseconds = now - hiddenTimestamp;
-            const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+            elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
 
             // Update the total seconds and total cash
             totalSeconds += elapsedSeconds;
@@ -75,9 +83,9 @@ function handleVisibilityChange() {
             // Update the display with new values
             updateTimerSpan();
             updateEarningSpan();
-            const newEarnings = (elapsedSeconds * wageAmountPerSecond).toFixed(2)
-            newEarningsSpan.innerText = "+ " + newEarnings + " CHF";
-            // newEarningsSpan.classList.add('fade-out');
+            updateNewEarningSpan();
+            // Make new earnings visible
+            newEarningsSpan.classList.add('fade-in');
         }
 
         // Restart the timer

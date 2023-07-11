@@ -3,6 +3,7 @@
     src: url(fonts/Nunito-Regular.ttf);
     font-weight: 400;
 }
+
 @font-face {
     font-family: Nunito;
     src: url(fonts/Nunito-Bold.ttf);
@@ -17,29 +18,63 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
+    font-size: 20px;
+}
+input{
+    font-size: 20px;
 }
 
 #money-tracker-div {
     display: none;
 }
+#money-tracker-div{
+    font-size: 25px;
+}
 
-#new-earnings{
+#time-and-earnings-div {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.time-span{
+    font-size: 20px;
+
+}
+
+#new-earnings-div {
+    text-align: right;
+    font-size: 20px;
+}
+
+#new-earnings {
     color: #07c707;
     font-weight: bold;
     float: right;
+    width: 100%;
+    display: none;
 }
 
-.fade-out {
-  animation: fade-out-animation 1s forwards;
-  animation-delay: 10s;
+.fade-in {
+    animation: fade-in-animation 1s forwards;
+    /*animation-delay: 0.5s;*/
+    transform: scale(0%);
+    display: inline-block !important;
 }
 
-@keyframes fade-out-animation {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+#gold-coin-img {
+    width: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes fade-in-animation {
+    from {
+        transform: scale(0%);
+    }
+    to {
+        transform: scale(100%);
+    }
 }

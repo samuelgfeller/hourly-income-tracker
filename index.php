@@ -14,9 +14,14 @@
     <button id="submit-btn">Start</button>
 </div>
 <div id="money-tracker-div">
-    <span>Time: </span><span id="spent-time"></span>
-    <span>Cash: </span><span id="total-cash-made"></span> <br>
-    <span id="new-earnings"></span>
+    <div id="time-and-earnings-div">
+        <span class="time-span">Time: </span><span id="spent-time" class="time-span"></span>
+        <img src="gold-coin.png" alt="Cash:" id="gold-coin-img">
+        <span id="total-cash-made"></span>
+    </div>
+    <div id="new-earnings-div">
+        <span id="new-earnings"></span>
+    </div>
 </div>
 
 <script src="script.js"></script>
