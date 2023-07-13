@@ -22,11 +22,10 @@ function startTimer() {
     // Set initial values
     updateEarningSpan();
     timerInterval = setInterval(() => {
-        updateEarningSpan();
-        updateNewEarningSpan();
         // Timer
         ++totalSeconds;
         ++elapsedSeconds;
+        updateEarningSpan();
         updateTimerSpan();
     }, 1000);
 }
